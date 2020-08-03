@@ -1,68 +1,126 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+React runs on JavaScript and React Code follows ES6 (EcmaScript) 
 
-In the project directory, you can run:
+Redux: 
+Allows to build applications that scale. 
 
-### `yarn start`
+Review
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A component in React is an independent and reusable piece of UI. 
+JSX looks just like HTML or XML but is actually JavaScript and allows us to create react components. 
+    // ES6 classes were introduced in 2015 to allow us to write JavaScript in an Object-
+    // oriented model. 
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `yarn test`
+import React, {Component} from 'react';
+Importing React, {Component} from ‘react’
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+App extends Component syntax: 
+class App extends Component {
+    
+    render(){
+        return(
+        <div>Countdown Champ, App Component</div>
+        )
+    }
+}
 
-### `yarn build`
+Importing App.css into the application looks like this: 
+import './App.css';
+ 
+class App extends Component {
+ 
+    render(){
+        return(
+        <div className="App">
+ 
+------------------------------------------------------------------------------------------------------------------------------
+.App {
+    text-align: center;
+    font-size: 35px; 
+    margin-top: 20%;
+}
+------------------------------------------------------------------------------------------------------------------------------
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Styling divs in App.jsx 
+            <div className="App-title">Countdown to December 25, 2017</div>
+            <div>
+                <div className="Clock-days">14 Days</div>
+                <div className="Clock-hours">30 hours</div>
+                <div className="Clock-minutes">15 minutes </div>
+                <div className="Clock-seconds">20 seconds</div>
+            </div>
+            <div>
+                <input placeholder="new date"/>
+------------------------------------------------------------------------------------------------------------------------------
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Introduction to State and Reactivity 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Each component has its own local state, with respect to the global state of the entire app 
 
-### `yarn eject`
+Just like in a school, 
+It has a state of its number of students, teachers, classrooms, and etc.
+Each student has its own state: number of textbooks, pens, etc. 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+------------------------------------------------------------------------------------------------------------------------------
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Creating and declaring state within a component: 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+class App extends Component {
+    constructor(props){
+        super(props);
+        // In React, state is always an object 
+        this.state = {
+            deadline: 'December 25, 2017'
+        }
+    }
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Applying it to our application and changing static plain HTML data:
+   <div className="App-title">Countdown to {this.state.deadline}</div>
 
-## Learn More
+------------------------------------------------------------------------------------------------------------------------------
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Updating state dynamically: 
+// You must never mutate or change state directly.
+        this.state.deadline = 'November 25, 2017'
+        // this will cause the component to not render. 
+        // Instead, we use the this.setState() method 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+We create a method called “changeDeadline()” that utilizes the “this.setState” build in method in components 
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Then we add an event listener to the button to wait until it is clicked to call our method. 
+                <button onClick={()=> this.changeDeadline()}>Submit</button>
 
-### Analyzing the Bundle Size
+------------------------------------------------------------------------------------------------------------------------------
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+        this.state = {
+            deadline: 'December 25, 2017',
+            newDeadline: ''
 
-### Making a Progressive Web App
+Capture the input when the user changes the value of the input element. 
+Demonstration of capturing the value of the change 
+                <input placeholder="new date"
+                onChange={event=> console.log('event', event.target.value)}
+                />
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+<input placeholder="new date"
+                onChange={event=> this.setState({newDeadline: event.target.value})}
+                />
+onChange, call the setState method on this component to set the new Deadline to the users’ input
 
-### Advanced Configuration
+------------------------------------------------------------------------------------------------------------------------------
+Passing state from parent component (App) to child component (<Clock/> 
+            <Clock
+            deadline={this.state.deadline}
+Which has the values of App.state stored into the Clock’s props. 
+        console.log('this.props', this.props)
+        console.log('this.state', this.state)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Clock.jsx:14 this.props {deadline: "December 25, 2017"}
+Clock.jsx:15 this.state {days: 0, hours: 0, minutes: 0, seconds: 0}
 
-### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-### `yarn build` fails to minify
+        const time = Date.parse(deadline) - Date.parse(new Date());
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
