@@ -1,3 +1,34 @@
+# Countdown Application 
+
+A simple project designed to get Web-Developers comfortable with the syntax and style of writing in React.
+
+Concepts reviewed in the making of this project: 
+
+** A component in React is an independent and reusable piece of UI. 
+
+** Styling divs in App.jsx uses "className" as opposed to "class" 
+
+** Introduction to State and Reactivity: 
+
+Each component has its own local state, with respect to the global state of the entire app 
+Just like in a school, 
+It has a state of its number of students, teachers, classrooms, and etc.
+Each student has its own state: number of textbooks, pens, etc. 
+
+** Initializing and declaring state within a component:  
+
+** Updating state dynamically: 
+
+** Passing state from parent component (App) to child component (<Clock/> will store the values of state from the parent in the props object in the child component. 
+
+## License & Copyright 
+---
+© David Katz Software Engineer - Coding Instructor
+
+
+
+
+
 
 React runs on JavaScript and React Code follows ES6 (EcmaScript) 
 
