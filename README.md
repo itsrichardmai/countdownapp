@@ -24,9 +24,9 @@ Each student has its own state: number of textbooks, pens, etc.
 ## License & Copyright 
 ---
 © David Katz Software Engineer - Coding Instructor
+https://www.skillshare.com/user/dtkatz
 
-
-
+---
 
 
 
